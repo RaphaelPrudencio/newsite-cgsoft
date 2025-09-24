@@ -48,7 +48,7 @@ const Services = () => {
               <span className="bg-gradient-to-r from-red-600 to-red-700 bg-clip-text text-transparent"> Serviços</span>
             </h1>
             <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed">
-              Soluções completas em tecnologia para impulsionar o crescimento da sua empresa
+              Soluções em tecnologia para impulsionar o crescimento da sua empresa
             </p>
           </div>
         </div>
@@ -70,7 +70,7 @@ const Services = () => {
                 >
                   <CardContent className="p-8 relative">
                     {/* Background Gradient on Hover */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-red-50 to-red-100 dark:from-red-950/20 dark:to-red-900/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-red-100 dark:from-gray-950/20 dark:to-gray-900/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                     
                     <div className="relative z-10">
                       <div className="w-16 h-16 bg-gradient-to-br from-red-100 to-red-200 dark:from-red-900/40 dark:to-red-800/40 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
@@ -85,13 +85,13 @@ const Services = () => {
                         {service.description}
                       </p>
 
-                      <Button 
+                      {/* <Button 
                         variant="ghost"
                         className="w-full hover:bg-red-50 dark:hover:bg-red-900/20 hover:text-red-600 dark:hover:text-red-400 group/btn transition-all duration-200"
                       >
                         Saiba Mais
                         <ArrowRight className="ml-2 w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-200" />
-                      </Button>
+                      </Button> */}
                     </div>
                   </CardContent>
                 </Card>

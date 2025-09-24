@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
+import logoLight from '../../assets/logo-cgsoft-light.png'; // para tema claro
+import logoDark  from '../../assets/logo-cgsoft-dark.png';  // para tema escuro
 import { useTheme } from '../../contexts/ThemeContext';
 import { 
   Sun, 
@@ -16,13 +18,14 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const { theme, toggleTheme } = useTheme();
+  const navigate = useNavigate();
   const location = useLocation();
 
   const navigation = [
-    { name: 'Início', href: '/' },
-    { name: 'Sobre', href: '/sobre' },
+    { name: 'Início', href: '/' },    
     { name: 'Serviços', href: '/servicos' },
-    { name: 'Contato', href: '/contato' }
+    { name: 'Contato', href: '/contato' },
+    { name: 'Sobre', href: '/sobre' }    
   ];
 
   const isActiveLink = (href) => {
@@ -32,8 +35,9 @@ const Header = () => {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    console.log('Busca realizada:', searchQuery);
-    // Aqui seria implementada a funcionalidade de busca
+   const q = searchQuery.trim();
+   if (!q) return;
+    navigate(`/buscar?q=${encodeURIComponent(q)}`);
   };
 
   return (
@@ -41,17 +45,16 @@ const Header = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <div className="flex items-center">
-            <Link to="/" className="flex items-center space-x-2 group">
-              <div className="w-10 h-10 bg-gradient-to-br from-red-600 to-red-700 rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform duration-200">
-                <Code2 className="w-6 h-6 text-white" />
-              </div>
-              <span className="text-2xl font-bold text-gray-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors duration-200">
-                CGSoft
-              </span>
-            </Link>
-          </div>
-
+            <div className="flex items-center">
+              <Link to="/" className="flex items-center group" aria-label="CGSoft — Início">
+                <img
+                  src={theme === 'light' ? logoLight : logoDark}
+                  alt="CGSoft"
+                  className="h-16 w-auto select-none"
+                  draggable="false"
+                />
+              </Link>
+            </div>
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             {navigation.map((item) => (
@@ -74,7 +77,8 @@ const Header = () => {
             <form onSubmit={handleSearch} className="relative">
               <Input
                 type="text"
-                placeholder="Buscar..."
+                placeholder="O que você procura?"
+                aria-label="Campo de busca no site"                
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-64 pl-10 pr-4 py-2 text-sm"
@@ -82,7 +86,7 @@ const Header = () => {
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
             </form>
 
-            <Button
+            {/* <Button
               variant="ghost"
               size="sm"
               onClick={toggleTheme}
@@ -93,7 +97,7 @@ const Header = () => {
               ) : (
                 <Sun className="w-4 h-4" />
               )}
-            </Button>
+            </Button> */}
           </div>
 
           {/* Mobile menu button */}
@@ -136,7 +140,8 @@ const Header = () => {
                 <form onSubmit={handleSearch} className="relative flex-1 mr-3">
                   <Input
                     type="text"
-                    placeholder="Buscar..."
+                    placeholder="O que você procura?"
+                    aria-label="Campo de busca no site"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     className="w-full pl-10 pr-4 py-2 text-sm"
@@ -144,7 +149,7 @@ const Header = () => {
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
                 </form>
                 
-                <Button
+                {/* <Button
                   variant="ghost"
                   size="sm"
                   onClick={toggleTheme}
@@ -155,7 +160,7 @@ const Header = () => {
                   ) : (
                     <Sun className="w-4 h-4" />
                   )}
-                </Button>
+                </Button> */}
               </div>
             </div>
           </div>

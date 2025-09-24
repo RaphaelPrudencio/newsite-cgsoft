@@ -34,7 +34,7 @@ const ServicesHighlight = () => {
             Nossos Principais Serviços
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-            Oferecemos soluções completas em tecnologia para impulsionar o crescimento da sua empresa
+            Oferecemos soluções em tecnologia para impulsionar o crescimento da sua empresa
           </p>
         </div>
 

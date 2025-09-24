@@ -1,3 +1,4 @@
+// src/pages/Contact.js
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/card';
 import { Button } from '../components/ui/button';
@@ -6,11 +7,11 @@ import { Textarea } from '../components/ui/textarea';
 import { Label } from '../components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../components/ui/select';
 import { useToast } from '../hooks/use-toast';
-import { 
-  MapPin, 
-  Phone, 
-  Mail, 
-  Clock, 
+import {
+  MapPin,
+  Phone,
+  Mail,
+  Clock,
   Send,
   CheckCircle2
 } from 'lucide-react';
@@ -19,7 +20,7 @@ import mockData from '../data/mock';
 const Contact = () => {
   const { company, contactForm } = mockData;
   const { toast } = useToast();
-  
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -30,6 +31,29 @@ const Contact = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // utils
+  const normalizeWhatsNumber = (raw) => {
+    const onlyDigits = String(raw || '').replace(/\D/g, '');
+    // se já vier com DDI 55, mantém; caso contrário, prefixa
+    return onlyDigits.startsWith('55') ? onlyDigits : `55${onlyDigits}`;
+  };
+
+  const buildWhatsLink = (data) => {
+    const rawTarget = company?.whatsapp || company?.phone || '';
+    const target = normalizeWhatsNumber(rawTarget);
+
+    const text =
+      `*Novo chamado pelo site CGSoft*%0A` +
+      `*Nome:* ${encodeURIComponent(data.name)}%0A` +
+      `*Email:* ${encodeURIComponent(data.email)}%0A` +
+      (data.phone ? `*Telefone:* ${encodeURIComponent(data.phone)}%0A` : '') +
+      `*Assunto:* ${encodeURIComponent(data.subject)}%0A` +
+      `*Mensagem:* ${encodeURIComponent(data.message)}`;
+
+    return `https://wa.me/${target}?text=${text}`;
+  };
+
+  // handlers
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -47,19 +71,32 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsSubmitting(true);
 
-    // Simular envio do formulário
-    setTimeout(() => {
-      console.log('Dados do formulário:', formData);
-      
+    // validações mínimas
+    if (!formData.name || !formData.email || !formData.subject || !formData.message) {
       toast({
-        title: "Mensagem enviada com sucesso!",
-        description: "Entraremos em contato em até 24 horas.",
+        title: "Preencha os campos obrigatórios",
+        description: "Nome, Email, Assunto e Mensagem são obrigatórios.",
+        variant: "destructive",
+        duration: 4000,
+      });
+      return;
+    }
+
+    try {
+      setIsSubmitting(true);
+
+      // monta e abre o WhatsApp com a mensagem
+      const whatsURL = buildWhatsLink(formData);
+      window.open(whatsURL, "_blank", "noopener,noreferrer");
+
+      toast({
+        title: "Abrimos uma conversa no WhatsApp",
+        description: "Envie a mensagem para concluir o contato. Também responderemos por email se necessário.",
         duration: 5000,
       });
 
-      // Limpar formulário
+      // limpa o formulário
       setFormData({
         name: '',
         email: '',
@@ -67,9 +104,17 @@ const Contact = () => {
         subject: '',
         message: ''
       });
-      
+    } catch (err) {
+      console.error(err);
+      toast({
+        title: "Não foi possível enviar agora",
+        description: "Tente novamente em instantes.",
+        variant: "destructive",
+        duration: 5000,
+      });
+    } finally {
       setIsSubmitting(false);
-    }, 1500);
+    }
   };
 
   return (
@@ -79,7 +124,7 @@ const Contact = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
-              Entre em 
+              Entre em
               <span className="bg-gradient-to-r from-red-600 to-red-700 bg-clip-text text-transparent"> Contato</span>
             </h1>
             <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed">
@@ -110,7 +155,7 @@ const Contact = () => {
                         </div>
                         <div>
                           <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
-                            Endereço
+                            Local
                           </h3>
                           <p className="text-gray-600 dark:text-gray-400">
                             {company.address}
@@ -131,7 +176,7 @@ const Contact = () => {
                           <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
                             Telefone
                           </h3>
-                          <a 
+                          <a
                             href={`tel:${company.phone}`}
                             className="text-gray-600 dark:text-gray-400 hover:text-red-600 dark:hover:text-red-400 transition-colors duration-200"
                           >
@@ -153,7 +198,7 @@ const Contact = () => {
                           <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
                             Email
                           </h3>
-                          <a 
+                          <a
                             href={`mailto:${company.email}`}
                             className="text-gray-600 dark:text-gray-400 hover:text-red-600 dark:hover:text-red-400 transition-colors duration-200"
                           >
@@ -251,8 +296,8 @@ const Contact = () => {
                         <Label htmlFor="subject" className="text-gray-700 dark:text-gray-300">
                           Assunto *
                         </Label>
-                        <Select 
-                          value={formData.subject} 
+                        <Select
+                          value={formData.subject}
                           onValueChange={handleSubjectChange}
                           required
                         >
@@ -294,11 +339,11 @@ const Contact = () => {
                       {isSubmitting ? (
                         <div className="flex items-center space-x-2">
                           <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                          <span>Enviando...</span>
+                          <span>Enviando…</span>
                         </div>
                       ) : (
                         <>
-                          Enviar Mensagem
+                          Solicitar contato
                           <Send className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
                         </>
                       )}
@@ -311,42 +356,8 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* Map Section */}
-      <section className="py-20 bg-gray-50 dark:bg-gray-800/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              Nossa Localização
-            </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-400">
-              Venha nos visitar em Campo Grande - MS
-            </p>
-          </div>
-
-          <Card className="overflow-hidden shadow-xl">
-            <CardContent className="p-0">
-              {/* Imagem estática do mapa de Campo Grande - MS */}
-              <div className="relative h-96 bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
-                <img 
-                  src="https://images.unsplash.com/photo-1524661135-423995f22d0b?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzV8MHwxfHNlYXJjaHw1fHxtYXAlMjBjaXR5fGVufDB8fHx8MTc1NDQyNTYwN3ww&ixlib=rb-4.1.0&q=85"
-                  alt="Mapa de Campo Grande - MS"
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
-                  <div className="bg-white dark:bg-gray-900 rounded-lg p-6 shadow-xl text-center">
-                    <MapPin className="w-8 h-8 text-red-600 dark:text-red-400 mx-auto mb-2" />
-                    <div className="font-bold text-gray-900 dark:text-white">CGSoft</div>
-                    <div className="text-sm text-gray-600 dark:text-gray-400">{company.address}</div>
-                  </div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-
       {/* FAQ or Additional Info */}
-      <section className="py-20">
+      <section className="py-20 bg-gray-50 dark:bg-gray-800/50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">

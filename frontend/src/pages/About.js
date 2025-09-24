@@ -27,7 +27,7 @@ const About = () => {
               <span className="bg-gradient-to-r from-red-600 to-red-700 bg-clip-text text-transparent"> CGSoft</span>
             </h1>
             <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed">
-              Conheça nossa história, valores e a equipe que transforma ideias em soluções tecnológicas
+              Conheça nossa história e nossos valores que transforma ideias em soluções tecnológicas.
             </p>
           </div>
         </div>
@@ -46,7 +46,7 @@ const About = () => {
               </p>
               <div className="grid grid-cols-2 gap-6">
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-red-600 dark:text-red-400">2014</div>
+                  <div className="text-3xl font-bold text-red-600 dark:text-red-400">2025</div>
                   <div className="text-sm text-gray-600 dark:text-gray-400">Ano de Fundação</div>
                 </div>
                 <div className="text-center">
@@ -124,7 +124,7 @@ const About = () => {
       </section>
 
       {/* Equipe */}
-      <section className="py-20">
+      {/* <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
@@ -184,10 +184,10 @@ const About = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* CTA Final */}
-      <section className="py-16 bg-gray-50 dark:bg-gray-800/50">
+      {/* <section className="py-16 bg-gray-50 dark:bg-gray-800/50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
             Quer fazer parte da nossa equipe?
@@ -204,7 +204,7 @@ const About = () => {
             <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
           </Button>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 };

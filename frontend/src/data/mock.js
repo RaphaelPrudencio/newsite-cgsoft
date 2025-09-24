@@ -3,11 +3,11 @@ export const mockData = {
   // Informações da empresa
   company: {
     name: "CGSoft",
-    slogan: "Soluções inteligentes para empresas",
-    description: "Empresa especializada em desenvolvimento de software personalizado, consultoria em TI e suporte técnico especializado.",
+    slogan: "Soluções inteligentes para sua empresa",
+    description: "Empresa especializada em desenvolvimento de software personalizado e suporte técnico de alta qualidade, garantindo soluções sob medida para o seu negócio.",
     address: "Campo Grande - MS, Brasil",
     email: "contato@cgsoft.com.br",
-    phone: "(67) 99999-9999",
+    phone: "(67) 99228-8629",
     location: {
       lat: -20.4634,
       lng: -54.6412,
@@ -21,14 +21,14 @@ export const mockData = {
     {
       id: 1,
       title: "Desenvolvimento de Software Personalizado",
-      description: "Criamos soluções sob medida para atender às necessidades específicas do seu negócio.",
+      description: "Criamos sistemas sob medida para atender necessidades específicas do seu negócio.",
       icon: "Code",
       featured: true
     },
     {
       id: 2,
-      title: "Consultoria em TI",
-      description: "Orientação estratégica para otimizar sua infraestrutura tecnológica e processos digitais.",
+      title: "Sites personalizados",
+      description: "Desenvolvemos sites profissionais e modernos, alinhados à identidade da sua empresa.",
       icon: "Users",
       featured: true
     },
@@ -42,7 +42,7 @@ export const mockData = {
     {
       id: 4,
       title: "Integração de Sistemas",
-      description: "Conectamos seus sistemas existentes para criar um ecossistema tecnológico integrado e eficiente.",
+      description: "Conectamos diferentes plataformas para que elas “conversem” entre si.",
       icon: "Network",
       featured: true
     },
@@ -52,40 +52,40 @@ export const mockData = {
       description: "Transformamos seus dados em insights valiosos para tomada de decisões estratégicas.",
       icon: "BarChart3",
       featured: false
-    },
-    {
-      id: 6,
-      title: "Segurança da Informação",
-      description: "Protegemos seus dados e sistemas com as melhores práticas de segurança digital.",
-      icon: "Shield",
-      featured: false
     }
+    // {
+    //   id: 6,
+    //   title: "Segurança da Informação",
+    //   description: "Protegemos seus dados e sistemas com as melhores práticas de segurança digital.",
+    //   icon: "Shield",
+    //   featured: false
+    // }
   ],
 
   // Diferenciais da empresa
   differentials: [
     {
       id: 1,
-      title: "Experiência",
-      description: "Mais de 10 anos desenvolvendo soluções tecnológicas inovadoras.",
-      icon: "Award"
+      title: "Inovação",
+      description: "Aplicamos as melhores práticas de desenvolvimento para criar soluções modernas, seguras e eficientes.",
+      icon: "CircuitBoard"
     },
     {
       id: 2,
       title: "Agilidade",
-      description: "Metodologias ágeis para entrega rápida e eficiente de projetos.",
+      description: "Metodologias ágeis que garantem entregas rápidas, eficientes e alinhadas às necessidades do cliente.",
       icon: "Zap"
     },
     {
       id: 3,
       title: "Suporte Especializado",
-      description: "Equipe dedicada para suporte contínuo e manutenção dos sistemas.",
+      description: "Equipe dedicada para suporte contínuo, manutenção preventiva e resolução de problemas críticos.",
       icon: "Headphones"
     },
     {
       id: 4,
       title: "Soluções Escaláveis",
-      description: "Tecnologias que crescem junto com o seu negócio.",
+      description: "Tecnologias que acompanham o crescimento do seu negócio, sem comprometer performance e segurança.",
       icon: "TrendingUp"
     }
   ],
@@ -157,7 +157,7 @@ export const mockData = {
   // Conteúdo das páginas
   pages: {
     about: {
-      history: "Fundada em 2014, a CGSoft nasceu da visão de democratizar o acesso a tecnologias avançadas para empresas de todos os portes. Ao longo dos anos, desenvolvemos centenas de projetos que transformaram a forma como nossos clientes fazem negócios.",
+      history: "Fundada em 2025, a CGSoft nasceu da visão de democratizar o acesso a tecnologias avançadas para empresas de todos os portes. Desenvolvemos projetos que transformam a forma como nossos clientes fazem negócios.",
       mission: "Nossa missão é desenvolver soluções tecnológicas inovadoras que impulsionem o crescimento e a eficiência dos nossos clientes, sempre priorizando a qualidade e a satisfação.",
       vision: "Ser reconhecida como a principal referência em soluções de software personalizadas no Centro-Oeste brasileiro.",
       values: [
@@ -172,10 +172,8 @@ export const mockData = {
   // Dados para o formulário de contato
   contactForm: {
     subjects: [
-      "Desenvolvimento de Software",
-      "Consultoria em TI",
-      "Suporte Técnico",
-      "Integração de Sistemas",
+      "Desenvolvimento de Software",      
+      "Suporte Técnico",      
       "Outros"
     ]
   },

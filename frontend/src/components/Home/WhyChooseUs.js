@@ -30,7 +30,7 @@ const WhyChooseUs = () => {
             Por que escolher a CGSoft?
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-            Nossos diferenciais fazem toda a diferença no sucesso dos seus projetos
+            Transformamos tecnologia em valor real para o crescimento dos seus projetos
           </p>
         </div>
 
