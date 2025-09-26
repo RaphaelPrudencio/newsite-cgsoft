@@ -86,7 +86,7 @@ const Header = () => {
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
             </form>
 
-            {/* <Button
+            <Button
               variant="ghost"
               size="sm"
               onClick={toggleTheme}
@@ -97,7 +97,7 @@ const Header = () => {
               ) : (
                 <Sun className="w-4 h-4" />
               )}
-            </Button> */}
+            </Button>
           </div>
 
           {/* Mobile menu button */}
@@ -149,7 +149,7 @@ const Header = () => {
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
                 </form>
                 
-                {/* <Button
+                <Button
                   variant="ghost"
                   size="sm"
                   onClick={toggleTheme}
@@ -160,7 +160,7 @@ const Header = () => {
                   ) : (
                     <Sun className="w-4 h-4" />
                   )}
-                </Button> */}
+                </Button>
               </div>
             </div>
           </div>
