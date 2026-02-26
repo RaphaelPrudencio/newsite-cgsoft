@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/static/css/main.94e4a95c.css",
+    "main.js": "/static/js/main.9afe48b1.js",
+    "static/media/logo-cgsoft-light.png": "/static/media/logo-cgsoft-light.a697be9d57cdc314d3fb.png",
+    "static/media/logo-cgsoft-dark.png": "/static/media/logo-cgsoft-dark.712236026cb183c7aaa2.png",
+    "index.html": "/index.html",
+    "main.94e4a95c.css.map": "/static/css/main.94e4a95c.css.map",
+    "main.9afe48b1.js.map": "/static/js/main.9afe48b1.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.94e4a95c.css",
+    "static/js/main.9afe48b1.js"
+  ]
+}
