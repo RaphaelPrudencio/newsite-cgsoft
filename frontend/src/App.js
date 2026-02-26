@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { HashRouter, Routes, Route, useLocation } from "react-router-dom";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { Toaster } from "./components/ui/toaster";
 
@@ -78,13 +78,13 @@ function App() {
   return (
     <ThemeProvider>
       <div className="App min-h-screen bg-white dark:bg-gray-900 transition-colors duration-200">
-        <BrowserRouter>
+        <HashRouter>
           <Header />
           <main>
             <AnimatedRoutes />
           </main>
           <Footer />
-        </BrowserRouter>
+        </HashRouter>
         <Toaster />
       </div>
     </ThemeProvider>
